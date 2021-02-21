@@ -1,0 +1,24 @@
+package com.company;
+import java.sql.*;
+public class Main {
+
+    public static void main(String[] args) {
+
+         String connectionUrl="jdbc:postgresql://localhost:5432/simpleBD";
+         Connection connection=null;
+          ResultSet  resultSet=null;
+         Statement statement=null;
+          try {
+             Class.forName("org.postgresql.Driver");
+              connection=DriverManager.getConnection(connectionUrl,"postgres","magauiyainc");
+               
+           statement=connection.createStatement();
+             resultSet=statement.executeQuery("select * from user1");
+             while(resultSet.next()){
+                    System.out.println(resultSet.getInt("id")+" "+resultSet.getString("name")+" "+resultSet.getString("surname"));
+                }
+           }catch (Exception e){
+                System.out.println(e);
+            }
+           }
+        }
